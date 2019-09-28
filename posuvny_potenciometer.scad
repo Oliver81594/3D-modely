@@ -1,3 +1,4 @@
+//https://www.aliexpress.com/item/32672118555.html
 spodok_dlzka = 90;
 spodok_sirka = 20;
 spodok_hrubka = 2;
