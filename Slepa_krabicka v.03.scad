@@ -159,13 +159,13 @@ diery();
 }
 }
 module 1_posuvny(){
-    translate([10,-45,0])
+    translate([10,-45,3])
      posuvny_potenciometer();
 }
 
 module 2_posuvny(){
     rotate([0,0,90])
-     translate([10,-45,0])
+     translate([10,-45,3])
       posuvny_potenciometer();
 }
 
@@ -270,7 +270,7 @@ diera_d = 2 ; //diameter
 
 module diera()
 {
-    cylinder (h = 8, d = diera_d, center = true, $fn=100);
+    cylinder (h = 8, d = 5, center = true, $fn=100);
 }
 module spodok() 
 {
@@ -374,10 +374,6 @@ module doplnky(){
     }
 }
 
-//2_polka();
-//translate([-krab_dlzka-20,0,0])
-//1_polka();
-
 translate([0,10,3])
  rotate ([0,0,90])
   drziak();
@@ -391,7 +387,7 @@ rotate([0,0,90])
   posuvny_potenciometer_diery();
   
 difference(){
-1_polka();
+2_polka();
 rotate ([0,0,90])
   translate([30,0,1.5])
   arduino();
@@ -402,19 +398,45 @@ translate([krab_dlzka + 20,0,0])
 difference(){
 
     difference(){
-    2_polka();
+    1_polka();
     rotate ([0,180,0])
      translate([-40,+5,0])
-      cylinder(h=20, r=2.5, center=true);
+      cylinder(h=20, r=3.5, center=true);
     }
     
 rotate ([0,180,0])
     translate([-40,40,0])
-      cylinder(h=20, r=2.5, center=true);
+      cylinder(h=20, r=3.5, center=true);
 }
 }
 
 
-diery_potenciometer();
+module diera_ard(){
+    difference(){
+    diery_potenciometer();
+    rotate ([0,0,90])
+     translate([30,-krab_dlzka - 20,4.5])
+      rotate ([0,180,180])
+       arduino();
 
+    }
+}
+
+module diery_slide(){
+     difference(){
+         difference(){
+            diera_ard();
+            translate([krab_dlzka + 20,-45,-5])
+             cube([90,3,8], true);
+         }
+      rotate ([0,0,90])
+         translate([5,-krab_dlzka + 25,-5])
+          cube([90,3,8], true);
+     }
+}
+
+
+
+
+diery_slide();
 doplnky();
